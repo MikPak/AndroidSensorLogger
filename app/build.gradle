@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "26.0.1"
+
+    defaultConfig {
+        applicationId "com.mikkopakkanen.androidsensorlogger"
+        minSdkVersion 9
+        targetSdkVersion 18
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.7
+        sourceCompatibility 1.7
+    }
+    dependencies {
+        compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    }
+}
