@@ -35,10 +35,12 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.EntryXComparator;
 import com.mikkopakkanen.androidsensorlogger.DataLoggerContract.LogEntry;
 import com.mikkopakkanen.androidsensorlogger.DataLoggerContract.LogEntry.DataLoggerDBHelper;
@@ -58,7 +60,9 @@ public class MainActivity extends Activity {
 	private TextView filenameDisplay;
 	private TextView logDisplay;
 	private DataLoggerDBHelper DataLoggerDBHelper;
+	private LineChart chart;
 	private List<Entry> entries = new ArrayList<Entry>();
+	private long startTime, timeElapsed;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +87,12 @@ public class MainActivity extends Activity {
 
 		// Register click listeners for buttons
 		findViewById(R.id.toggle).setOnClickListener(clickListener);
-		findViewById(R.id.btnUpload).setOnClickListener(clickListener);
+		//findViewById(R.id.btnUpload).setOnClickListener(clickListener);
 		findViewById(R.id.btnGetDataFromDB).setOnClickListener(clickListener);
-		findViewById(R.id.btnEnter).setOnClickListener(clickListener);
+		//findViewById(R.id.btnEnter).setOnClickListener(clickListener);
 		findViewById(R.id.btnExit).setOnClickListener(clickListener);
+
+	 	this.chart = (LineChart) findViewById(R.id.chart);
 
 		filenameDisplay = (TextView) findViewById(R.id.filename);
 		logDisplay = (TextView) findViewById(log);
@@ -121,6 +127,11 @@ public class MainActivity extends Activity {
 		}
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
 				0, locationListener);
+		this.startTime = System.currentTimeMillis();
+		this.chart.invalidate();
+		this.chart.clear();
+		this.entries.clear();
+		//System.out.println("Start: " + startTime);
 
 	}
 
@@ -148,15 +159,15 @@ public class MainActivity extends Activity {
 					stopRecording();
 				}
 				break;
-			case R.id.btnEnter:
+/*			case R.id.btnEnter:
 				write("ENTER");
-				break;
+				break;*/
 			case R.id.btnExit:
 				write("EXIT");
-				break;
+/*				break;
 			case R.id.btnUpload:
 				//upload();
-				break;
+				break;*/
 			case R.id.btnGetDataFromDB:
 				readFromDB();
 				break;
@@ -326,28 +337,27 @@ public class MainActivity extends Activity {
 
 		upload(tag,values[0], values[1], values[2]);
 
-			if(tag.equals("ACCEL")) {
+			if(tag.equals("MAG")) {
 				if(values[0] != null && values[1] != null) {
-					entries.add(new Entry(Float.parseFloat(values[0]), Float.parseFloat(values[1])));
-
-					// Retrieve LineChart from XML
-					LineChart chart = (LineChart) findViewById(R.id.chart);
+					this.timeElapsed = (System.currentTimeMillis() - this.startTime) / 1000;
+					entries.add(new Entry(timeElapsed, Float.parseFloat(values[0])));
 
 					// Sort entries
 					Collections.sort(entries, new EntryXComparator());
 
-					LineDataSet dataSet = new LineDataSet(entries, "ACCEL"); // add entries to dataset
-					dataSet.setColor(R.color.red);
-					dataSet.setValueTextColor(R.color.red); // styling, ...
-
+					LineDataSet dataSet = new LineDataSet(entries, "X: Time Y: MagnetometerX"); // add entries to dataset
 					LineData lineData = new LineData(dataSet);
+
 					chart.setData(lineData);
+					chart.notifyDataSetChanged(); // let the chart know it's data changed
+					chart.setVisibleXRangeMaximum(10);
 					chart.invalidate(); // refresh
+					chart.moveViewToX(lineData.getEntryCount());
 				}
 			}
 
 
-		logDisplay.setText(line);
+		//logDisplay.setText(line);
 	}
 
 	private void write(String tag, float[] values) {

@@ -28,28 +28,12 @@
         android:weightSum="1.0">
 
         <Button
-            android:id="@+id/btnEnter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:padding="20dp"
-            android:text="Start Logging" />
-
-        <Button
-            android:id="@+id/btnUpload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:padding="20dp"
-            android:text="DB Upload" />
-
-        <Button
             android:id="@+id/btnGetDataFromDB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:padding="20dp"
-            android:text="Get Data From DB" />
+            android:text="Draw data from DB" />
 
         <Button
             android:id="@+id/btnExit"
