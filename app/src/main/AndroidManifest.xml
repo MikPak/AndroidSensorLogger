@@ -5,8 +5,9 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18"
+        />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
@@ -25,6 +26,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.mikkopakkanen.androidsensorlogger.GraphActivity"
+            android:configChanges="orientation|screenSize" >
+
         </activity>
     </application>
 

@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ButtonBack"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:text="Back"
+                android:textSize="18px"></Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ButtonPrevious"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:text="Previous"
+                android:textSize="18px"></Button>
+
+            <Button
+                android:id="@+id/ButtonNext"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:text="Next"
+                android:textSize="18px"></Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+</LinearLayout>

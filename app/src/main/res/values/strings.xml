@@ -3,5 +3,10 @@
 
     <string name="app_name">Android Sensor Logger</string>
     <string name="action_settings">Settings</string>
+    <string name="ToggleButtonOn">Stop listening</string>
+    <string name="ToggleButtonOff">Start listening</string>
+
+    // Menu
+    <string name="action_quit">Quit Application</string>
 
 </resources>

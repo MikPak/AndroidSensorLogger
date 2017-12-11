@@ -13,7 +13,9 @@
         android:id="@+id/toggle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:textOn="@string/ToggleButtonOn"
+        android:textOff="@string/ToggleButtonOff"
+        />
 
     <TextView
         android:id="@+id/filename"
@@ -22,27 +24,11 @@
         android:text="" />
 
     <LinearLayout
+        android:id="@+id/LinearLayoutMain"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="1.0">
-
-        <Button
-            android:id="@+id/btnGetDataFromDB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:padding="20dp"
-            android:text="Draw data from DB" />
-
-        <Button
-            android:id="@+id/btnExit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:padding="20dp"
-            android:text="Exit" />
-
     </LinearLayout>
 
     <TextView
@@ -51,9 +37,5 @@
         android:layout_height="wrap_content"
         android:text="" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </LinearLayout>
